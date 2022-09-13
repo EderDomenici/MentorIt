@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Mentor {
+  id          Int     @id @default(autoincrement())
+  name        String
+  lastName    String
+  city        String
+  photo       String
+  about       String  @db.Text
+  job         String
+  formation   String
+  stack       String
+  tecnologies String
+  linkedin    String
+  git         String
+  email       String @unique
+  login       String @unique
+  password    String
+
+  Match       Match[]
+}
+
+model Mentorado {
+  id          Int     @id @default(autoincrement())
+  name        String
+  lastName    String
+  city        String
+  photo       String
+  about       String  @db.Text
+  job         String
+  formation   String
+  stack       String
+  tecnologies String
+  linkedin    String
+  git         String
+  email       String @unique
+  login       String @unique
+  password    String
+
+  Match       Match[]
+}
+
+model Match {
+  id          Int       @id @default(autoincrement())
+  mentor      Mentor    @relation(fields: [mentorId], references: [id])
+  mentorId    Int
+  mentorado   Mentorado @relation(fields: [mentoradoId], references: [id])
+  mentoradoId Int
+}
