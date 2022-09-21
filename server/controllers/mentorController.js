@@ -13,6 +13,17 @@ module.exports = {
 
     },
 
+    async showMentor(req, res){
+        const {id} = req.params
+
+        const mentor = await prisma.mentor.findUnique({
+            where:{
+                id
+            }
+        })
+
+        return mentor
+    },
 
     async login(req, res){
         const {email, password} = req.body
@@ -30,33 +41,32 @@ module.exports = {
             const comparepass = await bcrypt.compareSync(password, mentor.password)
 
             if(email === mentor.email && comparepass === true){
-                const token = jwt.sign({email}, "ae926461-6fa0-43fb-8bb8-a70191bcdac2",{
+                const token = jwt.sign({email}, process.env.SECRET,{
                     subject:"mentor.id",
                     expiresIn:"50s"
                 })
 
                 return res.json(token)
             } else{
-                return res.status(404).send()
+                return res.status(400).send("Login ou senha Invalidos")
             }
     },
 
-    async findOnde(req, res){},
-
     async create(req, res){
-        const {name,
+        const {
+            name,
             lastName,
+            genre,
             city,
             photo,
             about,
+            onjob,
             job,
             formation,
-            stack,
-            tecnologies,
+            stackID,
             linkedin,
             git,
             email,
-            login,
             password} = req.body
 
         const encrypted = bcrypt.hashSync(password, 10)
@@ -65,17 +75,17 @@ module.exports = {
             data:{
                 name,
                 lastName,
+                genre,
                 city,
                 photo,
                 about,
+                onjob,
                 job,
                 formation,
-                stack,
-                tecnologies,
+                stackID,
                 linkedin,
                 git,
                 email,
-                login,
                 password:encrypted
             }
         })
@@ -84,7 +94,9 @@ module.exports = {
 
     },
 
-    async update(req, res){},
+    async update(req, res){
+
+    },
 
     async delete(req, res){}
 

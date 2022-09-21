@@ -10,44 +10,74 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Mentor {
-  id          Int     @id @default(autoincrement())
-  name        String
-  lastName    String
-  city        String
-  photo       String
-  about       String  @db.Text
-  job         String
-  formation   String
-  stack       String
-  tecnologies String
-  linkedin    String
-  git         String
-  email       String @unique
-  login       String @unique
-  password    String
+model Stack {
+  id        Int         @id @default(autoincrement())
+  stackName String
+  Mentor    Mentor[]
+  Mentorado Mentorado[]
+}
 
-  Match       Match[]
+model Tecs {
+  id       Int        @id @default(autoincrement())
+  TecName  String
+  Tec_join Tec_join[]
+}
+
+model Mentor {
+  id        Int     @id @default(autoincrement())
+  name      String
+  lastName  String
+  genre     Boolean?
+  city      String
+  photo     String?
+  about     String  @db.Text
+  onJob     Boolean
+  job       String?
+  formation String?
+  stacks    Stack   @relation(fields: [stackID], references: [id])
+  stackID   Int
+  linkedin  String?
+  git       String?
+  email     String  @unique
+  password  String
+  rating    Float?
+  lvl       Int?
+
+  Match    Match[]
+  Tec_join Tec_join[]
 }
 
 model Mentorado {
-  id          Int     @id @default(autoincrement())
-  name        String
-  lastName    String
-  city        String
-  photo       String
-  about       String  @db.Text
-  job         String
-  formation   String
-  stack       String
-  tecnologies String
-  linkedin    String
-  git         String
-  email       String @unique
-  login       String @unique
-  password    String
+  id        Int     @id @default(autoincrement())
+  name      String
+  lastName  String
+  genre     Boolean?
+  city      String
+  photo     String?
+  about     String  @db.Text
+  job       String?
+  onJob     Boolean
+  formation String?
+  stacks    Stack   @relation(fields: [stackID], references: [id])
+  stackID   Int
+  linkedin  String?
+  git       String?
+  email     String  @unique
+  password  String
+  traning   String
 
-  Match       Match[]
+  Match    Match[]
+  Tec_join Tec_join[]
+}
+
+model Tec_join {
+  id          Int        @id @default(autoincrement())
+  tec         Tecs       @relation(fields: [tecId], references: [id])
+  tecId       Int
+  mentor      Mentor?    @relation(fields: [mentorId], references: [id])
+  mentorId    Int?
+  mentorado   Mentorado? @relation(fields: [mentoradoId], references: [id])
+  mentoradoId Int?
 }
 
 model Match {

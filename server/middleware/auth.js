@@ -11,7 +11,7 @@ function auth(req, res, next){
     const [, token] = authtoken.split(" ");
 
     try{
-        jwt.verify(token, "ae926461-6fa0-43fb-8bb8-a70191bcdac2")
+        jwt.verify(token, process.env.SECRET)
 
         return next();
 
