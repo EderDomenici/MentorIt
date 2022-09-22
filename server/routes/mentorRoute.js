@@ -9,7 +9,7 @@ routes.post('/login', mentorController.login)
 
 routes.get('/:id', mentorController.showMentor)
 
-routes.post('/create', mentorController.create)
+routes.post('/create', mentorController.createMentor)
 
 
 

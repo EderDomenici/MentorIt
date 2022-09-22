@@ -52,7 +52,7 @@ module.exports = {
             }
     },
 
-    async create(req, res){
+    async createMentor(req, res){
         const {
             name,
             lastName,
@@ -60,7 +60,7 @@ module.exports = {
             city,
             photo,
             about,
-            onjob,
+            onJob,
             job,
             formation,
             stackID,
@@ -79,7 +79,7 @@ module.exports = {
                 city,
                 photo,
                 about,
-                onjob,
+                onJob,
                 job,
                 formation,
                 stackID,

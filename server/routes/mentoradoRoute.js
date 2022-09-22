@@ -7,7 +7,7 @@ routes.post("/login", mentoradoController.login)
 
 routes.get("/:id", mentoradoController.showMentorado)
 
-routes.post("/create", mentoradoController.create)
+routes.post("/create", mentoradoController.createMentorado)
 
 
 module.exports = routes

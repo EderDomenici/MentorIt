@@ -41,7 +41,7 @@ module.exports = {
 
             if(email === mentorado.email && comparepass === true){
                 const token = jwt.sign({email}, process.env.SECRET,{
-                    subject:"mentor.id",
+                    subject:"mentorado.id",
                     expiresIn:"50s"
                 })
                 return res.json(token)
@@ -51,7 +51,7 @@ module.exports = {
 
     },
 
-    async create(req, res){
+    async createMentorado(req, res){
         const {
             name,
             lastName,
@@ -60,7 +60,7 @@ module.exports = {
             photo,
             about,
             job,
-            onjob,
+            onJob,
             formation,
             stackID,
             likedin,
@@ -81,7 +81,7 @@ module.exports = {
                 photo,
                 about,
                 job,
-                onjob,
+                onJob,
                 formation,
                 stackID,
                 likedin,

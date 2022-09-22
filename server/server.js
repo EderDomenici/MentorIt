@@ -16,7 +16,7 @@ app.use(cors())
 app.use(express.json());
 
 app.use('/mentor', mentorRoute)
-app.use('/mentorado', mentorRoute)
+app.use('/mentorado', mentoradoRoute)
 
 
 
