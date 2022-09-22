@@ -2,11 +2,11 @@ import { useFetch } from "../hooks/useFetch"
 
 export function Profile(){
 
-    const { data } = useFetch("http://localhost:3000/mentor")
+    const { data } = useFetch("mentor")
 
     console.log(data)
     return (
-
+        
         <div>
             {data.map(ret=>{
                 return(

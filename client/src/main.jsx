@@ -2,6 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { NextUIProvider } from '@nextui-org/react';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
+
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
